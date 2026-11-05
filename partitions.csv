@@ -1,0 +1,6 @@
+# Name,     Type, SubType, Offset,   Size,      Flags
+# Same 16 MiB flash and partition-table offset as the reference hardware.
+nvs,        data, nvs,     0x11000,  0x6000,
+phy_init,   data, phy,     0x17000,  0x1000,
+board_nvs,  data, nvs,     0x18000,  0x10000,
+factory,    app,  factory, 0x30000,  0xD00000,

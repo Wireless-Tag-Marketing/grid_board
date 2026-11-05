@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Grid Board · 中文看板</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div><span class="eyebrow">GRID BOARD</span><h1>让文字落在屏幕上。</h1></div>
+    <p id="connection" role="status">正在读取设备…</p>
+  </header>
+  <main>
+    <section class="preview-panel" aria-label="屏幕预览">
+      <div class="section-title"><h2>屏幕预览</h2><span>1024 × 600</span></div>
+      <canvas id="preview" width="1024" height="600" aria-label="显示内容的近似预览"></canvas>
+      <p class="muted">预览使用浏览器字体；实际屏幕使用内置中文和表情字体。</p>
+      <p id="capacity" class="muted" role="status" aria-live="polite"></p>
+    </section>
+    <section class="controls" aria-label="显示配置">
+      <div class="tabs" role="tablist" aria-label="配置类型">
+        <button id="current-tab" type="button" role="tab" aria-selected="true" aria-controls="config-form">当前显示</button>
+        <button id="defaults-tab" type="button" role="tab" aria-selected="false" aria-controls="config-form">默认配置</button>
+      </div>
+      <p id="mode-description">保存后立即显示，断电重启后恢复。</p>
+      <form id="config-form">
+        <fieldset id="fields" disabled>
+          <label for="text" id="text-label">显示内容</label>
+          <textarea id="text" rows="5" placeholder="输入中文、英文或单字符表情；回车换行" spellcheck="false"></textarea>
+          <div class="field-row"><label for="font-size">字体大小</label><output id="font-value" for="font-size">64 px</output></div>
+          <input id="font-size" type="range" min="24" max="128" step="1" value="64">
+          <div class="field-row"><label for="fall-ms">下落时长</label><output id="fall-value" for="fall-ms">600 ms</output></div>
+          <input id="fall-ms" type="range" min="0" max="3000" step="50" value="600">
+          <p class="hint">数值越小下落越快；设为 0 直接显示。</p>
+          <div class="field-row"><label for="scroll-speed">上下滚动速度</label><output id="scroll-value" for="scroll-speed">40 px/s</output></div>
+          <input id="scroll-speed" type="range" min="5" max="240" step="1" value="40">
+          <p class="hint">超过一屏时完整内容上下往返滚动，两端停留 1.5 秒；数值越大滚动越快。</p>
+          <div class="field-row"><label for="brightness">屏幕亮度</label><output id="brightness-value" for="brightness">80%</output></div>
+          <input id="brightness" type="range" min="1" max="100" value="80">
+          <label class="switch"><input id="show-grid" type="checkbox" checked><span>显示网格栅栏</span></label>
+          <p class="hint">关闭后保留字符布局，隐藏卡片底色、边框和分隔线。</p>
+          <button id="save" type="submit" class="primary">保存并显示</button>
+        </fieldset>
+      </form>
+      <div class="actions">
+        <button id="reload" type="button">重新读取</button>
+        <button id="reset" type="button" disabled>恢复已设默认</button>
+        <button id="factory" class="danger" type="button" disabled>恢复出厂配置</button>
+      </div>
+      <p id="feedback" role="status" aria-live="polite">请连接设备热点后打开 http://192.168.4.1</p>
+    </section>
+  </main>
+  <footer><span id="network">设备 AP · 192.168.4.1</span><span>内容与配置在保存成功后写入设备</span></footer>
+</body>
+</html>

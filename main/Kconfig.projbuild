@@ -1,0 +1,15 @@
+menu "Grid Board Web"
+    config GRID_BOARD_AP_SSID
+        string "Wi-Fi AP name"
+        default "WIRELESS-GridBoard-Web"
+    config GRID_BOARD_AP_PASSWORD
+        string "Wi-Fi AP password (8-63 ASCII characters)"
+        default "12345678"
+        help
+            Change this before using the device in a shared environment.
+            Do not put a private password into version control.
+    config GRID_BOARD_AP_CHANNEL
+        int "Wi-Fi AP channel"
+        range 1 11
+        default 6
+endmenu
